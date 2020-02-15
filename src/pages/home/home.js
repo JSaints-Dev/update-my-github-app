@@ -32,12 +32,12 @@ const Home = ({ userInfo, repos, avatar, userName, reposLength, followers, follo
 
 Home.propTypes = {
   userInfo: t.bool,
-  repos: t.array,
-  avatar: t.string,
-  userName: t.string,
-  reposLength: t.number,
-  followers: t.number,
-  following: t.number
+  repos: t.array.isRequired,
+  avatar: t.string.isRequired,
+  userName: t.string.isRequired,
+  reposLength: t.number.isRequired,
+  followers: t.number.isRequired,
+  following: t.number.isRequired
 }
 
 const Container = styled.div`

@@ -23,11 +23,11 @@ const UserInfo = ({ avatar, userName, reposLength, followers, following }) => (
 )
 
 UserInfo.propTypes = {
-  avatar: t.string,
-  userName: t.string,
-  reposLength: t.number,
-  followers: t.number,
-  following: t.number
+  avatar: t.string.isRequired,
+  userName: t.string.isRequired,
+  reposLength: t.number.isRequired,
+  followers: t.number.isRequired,
+  following: t.number.isRequired
 }
 
 const Wrapper = styled.section`
