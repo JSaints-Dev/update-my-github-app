@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import { CssBaseline } from '@material-ui/core'
+
+import HomePage from './pages/home/'
 
 function App () {
+  const [userInfo] = useState(true)
+  const [avatar] = useState('https://avatars2.githubusercontent.com/u/57118447?v=4')
+  const [userName] = useState('JSaints-Dev')
+  const [reposLength] = useState(12)
+  const [followers] = useState(10)
+  const [following] = useState(10)
+  const [repos] = useState([{
+    name: 'Repo',
+    link: '#'
+  }, {
+    name: 'Repo',
+    link: '#'
+  }])
+
   return (
-    <div>
-      <h1>Hello Word!</h1>
-    </div>
+    <>
+      <CssBaseline />
+
+      <HomePage
+        userInfo={userInfo}
+        avatar={avatar}
+        userName={userName}
+        reposLength={reposLength}
+        followers={followers}
+        following={following}
+        repos={repos}
+      />
+    </>
   )
 }
 
