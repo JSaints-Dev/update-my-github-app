@@ -8,37 +8,26 @@ import Actions from './components/actions'
 import Repos from './components/repos'
 
 const Home = ({
-  avatar,
-  followers,
-  following,
   getRepos,
   getStarred,
   handleSearch,
   reposTitle,
   repos,
-  reposLength,
-  userId,
-  userName
+  userInfo
 }) => {
   return (
     <Container>
       <WrapperInfo>
         <SearchUserGit handleSearch={handleSearch} />
-        {!!userId &&
-          <UserInfo
-            avatar={avatar}
-            userName={userName}
-            reposLength={reposLength}
-            followers={followers}
-            following={following}
-          />}
-        {!!userId &&
+        {!!userInfo &&
+          <UserInfo userInfo={userInfo} />}
+        {!!userInfo &&
           <Actions
             getRepos={getRepos}
             getStarred={getStarred}
           />}
 
-        {!!repos.length &&
+        {!!repos &&
           <Repos
             title={reposTitle}
             repos={repos}
@@ -49,17 +38,13 @@ const Home = ({
 }
 
 Home.propTypes = {
-  userId: t.number,
-  repos: t.array.isRequired,
-  avatar: t.string.isRequired,
-  userName: t.string,
-  reposTitle: t.string,
-  reposLength: t.number.isRequired,
-  followers: t.number.isRequired,
-  following: t.number.isRequired,
-  handleSearch: t.func.isRequired,
   getRepos: t.func.isRequired,
-  getStarred: t.func.isRequired
+  getStarred: t.func.isRequired,
+  handleSearch: t.func.isRequired,
+  repos: t.array.isRequired,
+  reposTitle: t.string,
+  userInfo: t.object
+
 }
 
 const Container = styled.div`

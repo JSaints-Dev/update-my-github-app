@@ -6,16 +6,10 @@ import { Button } from '@material-ui/core'
 
 const Actions = ({ getRepos, getStarred }) => (
   <WrapperActions>
-    <Button
-      variant='contained'
-      onClick={getRepos}
-    >
+    <Button variant='contained' onClick={getRepos}>
       Ver Repositórios
     </Button>
-    <Button
-      variant='contained'
-      onClick={getStarred}
-    >
+    <Button variant='contained' onClick={getStarred}>
       Ver Favoritos
     </Button>
   </WrapperActions>

@@ -13,8 +13,8 @@ const Repos = ({ title, repos }) => (
 )
 
 Repos.propTypes = {
-  title: t.string,
-  repos: t.array.isRequired
+  repos: t.array.isRequired,
+  title: t.string
 }
 
 const WrapperRepos = styled.div`

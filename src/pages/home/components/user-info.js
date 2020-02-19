@@ -2,38 +2,32 @@ import React from 'react'
 import t from 'prop-types'
 import styled from 'styled-components'
 
-const UserInfo = ({
-  avatar,
-  followers,
-  following,
-  reposLength,
-  userName
-}) => (
+const UserInfo = ({ userInfo }) => (
   <Wrapper>
     <ContainerAvatar>
-      <img src={avatar} alt='' />
+      <img src={userInfo.avatar_url} alt='' />
     </ContainerAvatar>
 
     <ContainerData>
       <NameUser>
-        <a href={`https://github.com/${userName}`}>{userName}</a>
+        <a
+          href={`https://github.com/${userInfo.login}`}
+        >
+          {userInfo.name}
+        </a>
       </NameUser>
 
       <ReposInfo>
-        <span>{`- Repositórios: ${reposLength}`}</span>
-        <span>{`- Seguidores: ${followers}`}</span>
-        <span>{`- Seguindo: ${following}`}</span>
+        <span>{`- Repositórios: ${userInfo.public_repos}`}</span>
+        <span>{`- Seguidores: ${userInfo.followers}`}</span>
+        <span>{`- Seguindo: ${userInfo.following}`}</span>
       </ReposInfo>
     </ContainerData>
   </Wrapper>
 )
 
 UserInfo.propTypes = {
-  avatar: t.string.isRequired,
-  followers: t.number.isRequired,
-  following: t.number.isRequired,
-  reposLength: t.number.isRequired,
-  userName: t.string.isRequired
+  userInfo: t.object
 }
 
 const Wrapper = styled.section`
