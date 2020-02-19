@@ -18,6 +18,8 @@ function App () {
         .then((result) => {
           setUserInfo(result.data)
         })
+      setRepos([])
+      setReposTitle('')
     }
   }
 
