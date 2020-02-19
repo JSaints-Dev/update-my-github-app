@@ -8,13 +8,19 @@ function App () {
   const [reposTitle, setReposTitle] = useState('')
   const [repos, setRepos] = useState([{}])
 
+  const getGitHubApiUrl = (username, action) => {
+    const inUserName = username ? `/${username}` : ''
+    const inAction = action ? `/${action}` : ''
+    return `https://api.github.com/users${inUserName}${inAction}`
+  }
+
   const handleSearch = (e) => {
     const value = e.target.value
     const keyCode = e.which || e.keyCode
     const ENTER = 13
 
     if (keyCode === ENTER) {
-      axios.get(`https://api.github.com/users/${value}`)
+      axios.get(getGitHubApiUrl(value))
         .then((result) => {
           setUserInfo(result.data)
         })
@@ -25,7 +31,7 @@ function App () {
 
   const getRepos = (action) => {
     action === 'repos' ? setReposTitle('Repositórios') : setReposTitle('Favoritos')
-    axios.get(`https://api.github.com/users/${userInfo.login}/${action}`)
+    axios.get(getGitHubApiUrl(userInfo.login, action))
       .then((result) => {
         setRepos(result.data)
       })
