@@ -2,7 +2,13 @@ import React from 'react'
 import t from 'prop-types'
 import styled from 'styled-components'
 
-const UserInfo = ({ avatar, userName, reposLength, followers, following }) => (
+const UserInfo = ({
+  avatar,
+  followers,
+  following,
+  reposLength,
+  userName
+}) => (
   <Wrapper>
     <ContainerAvatar>
       <img src={avatar} alt='' />
@@ -24,10 +30,10 @@ const UserInfo = ({ avatar, userName, reposLength, followers, following }) => (
 
 UserInfo.propTypes = {
   avatar: t.string.isRequired,
-  userName: t.string.isRequired,
-  reposLength: t.number.isRequired,
   followers: t.number.isRequired,
-  following: t.number.isRequired
+  following: t.number.isRequired,
+  reposLength: t.number.isRequired,
+  userName: t.string.isRequired
 }
 
 const Wrapper = styled.section`
@@ -53,7 +59,7 @@ const ContainerAvatar = styled.div`
 
 const NameUser = styled.span`
   a {
-    color: #FF9907;
+    color: #2A6DAF;
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;

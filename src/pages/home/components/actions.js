@@ -1,14 +1,30 @@
 import React from 'react'
+import t from 'prop-types'
 import styled from 'styled-components'
 
 import { Button } from '@material-ui/core'
 
-const Actions = () => (
+const Actions = ({ getRepos, getStarred }) => (
   <WrapperActions>
-    <Button variant='contained'>Ver Repositórios</Button>
-    <Button variant='contained'>Ver Favoritos</Button>
+    <Button
+      variant='contained'
+      onClick={getRepos}
+    >
+      Ver Repositórios
+    </Button>
+    <Button
+      variant='contained'
+      onClick={getStarred}
+    >
+      Ver Favoritos
+    </Button>
   </WrapperActions>
 )
+
+Actions.propTypes = {
+  getRepos: t.func.isRequired,
+  getStarred: t.func.isRequired
+}
 
 const WrapperActions = styled.div`
   display: flex;
@@ -18,7 +34,7 @@ const WrapperActions = styled.div`
   width: 100%;
 
   button {
-    background-color: #FF9907;
+    background-color: #2A6DAF;
     width: 500px;
   }
 `

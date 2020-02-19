@@ -1,14 +1,20 @@
 import React from 'react'
+import t from 'prop-types'
 import styled from 'styled-components'
 
-const SearchUserGit = () => (
+const SearchUserGit = ({ handleSearch }) => (
   <ContainerSearch>
     <input
-      type='serach'
+      type='search'
       placeholder='Digite o nome do usuário no GitHub'
+      onKeyUp={handleSearch}
     />
   </ContainerSearch>
 )
+
+SearchUserGit.propTypes = {
+  handleSearch: t.func.isRequired
+}
 
 const ContainerSearch = styled.div`
   height: 50px;
@@ -19,9 +25,14 @@ const ContainerSearch = styled.div`
     width: 100%;
 
     border: none;
-    background-color: #FF9907;
+    background-color: #2A6DAF;
+    color: #EAE0CC;
     font-size: 20px;
     padding-left: 10px;
+
+    ::placeholder {
+      color: #EAE0CC;
+    }
   }
 `
 

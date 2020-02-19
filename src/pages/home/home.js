@@ -7,42 +7,64 @@ import UserInfo from './components/user-info'
 import Actions from './components/actions'
 import Repos from './components/repos'
 
-const Home = ({ userInfo, repos, avatar, userName, reposLength, followers, following }) => (
-  <Container>
-    <WrapperInfo>
-      <SearchUserGit />
-      {!!userInfo &&
-        <UserInfo
-          avatar={avatar}
-          userName={userName}
-          reposLength={reposLength}
-          followers={followers}
-          following={following}
-        />}
-      {!!userInfo && <Actions />}
+const Home = ({
+  avatar,
+  followers,
+  following,
+  getRepos,
+  getStarred,
+  handleSearch,
+  reposTitle,
+  repos,
+  reposLength,
+  userId,
+  userName
+}) => {
+  return (
+    <Container>
+      <WrapperInfo>
+        <SearchUserGit handleSearch={handleSearch} />
+        {!!userId &&
+          <UserInfo
+            avatar={avatar}
+            userName={userName}
+            reposLength={reposLength}
+            followers={followers}
+            following={following}
+          />}
+        {!!userId &&
+          <Actions
+            getRepos={getRepos}
+            getStarred={getStarred}
+          />}
 
-      {!!repos.length &&
-        <Repos
-          title='Repositórios'
-          repos={repos}
-        />}
-    </WrapperInfo>
-  </Container>
-)
+        {!!repos.length &&
+          <Repos
+            title={reposTitle}
+            repos={repos}
+          />}
+      </WrapperInfo>
+    </Container>
+  )
+}
 
 Home.propTypes = {
-  userInfo: t.bool,
+  userId: t.number,
   repos: t.array.isRequired,
   avatar: t.string.isRequired,
-  userName: t.string.isRequired,
+  userName: t.string,
+  reposTitle: t.string,
   reposLength: t.number.isRequired,
   followers: t.number.isRequired,
-  following: t.number.isRequired
+  following: t.number.isRequired,
+  handleSearch: t.func.isRequired,
+  getRepos: t.func.isRequired,
+  getStarred: t.func.isRequired
 }
 
 const Container = styled.div`
-  background-color: #1B0B14;
-  height: 800px;
+  background-color: #1D1D1E;
+  min-height: 800px;
 
   padding-left: 140px;
   padding-right: 140px;

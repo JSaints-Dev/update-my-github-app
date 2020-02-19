@@ -7,13 +7,13 @@ const Repos = ({ title, repos }) => (
   <WrapperRepos>
     <h2>{title}</h2>
     {repos.map((repo, i) => (
-      <a key={i} href={repo.link}>{repo.name}</a>
+      <a key={i} href={repo.html_url}>{repo.name}</a>
     ))}
   </WrapperRepos>
 )
 
 Repos.propTypes = {
-  title: t.string.isRequired,
+  title: t.string,
   repos: t.array.isRequired
 }
 
@@ -23,7 +23,7 @@ const WrapperRepos = styled.div`
   margin-top: 20px;
 
   h2 {
-    color: #EAE0CC;
+    color: #2A6DAF;
   }
 
   a {
