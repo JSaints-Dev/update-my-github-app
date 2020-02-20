@@ -2,29 +2,38 @@ import React from 'react'
 import t from 'prop-types'
 import styled from 'styled-components'
 
-const UserInfo = ({ userInfo }) => (
-  <Wrapper>
-    <ContainerAvatar>
-      <img src={userInfo.avatar_url} alt='' />
-    </ContainerAvatar>
+const UserInfo = ({ userInfo }) => {
+  const image = userInfo.avatar_url
+  const name = userInfo.name
+  const username = userInfo.login
+  const repo = userInfo.public_repos
+  const followers = userInfo.followers
+  const following = userInfo.following
 
-    <ContainerData>
-      <NameUser>
-        <a
-          href={`https://github.com/${userInfo.login}`}
-        >
-          {userInfo.name}
-        </a>
-      </NameUser>
+  return (
+    <Wrapper>
+      <ContainerAvatar>
+        <img src={image} alt='' />
+      </ContainerAvatar>
 
-      <ReposInfo>
-        <span>{`- Repositórios: ${userInfo.public_repos}`}</span>
-        <span>{`- Seguidores: ${userInfo.followers}`}</span>
-        <span>{`- Seguindo: ${userInfo.following}`}</span>
-      </ReposInfo>
-    </ContainerData>
-  </Wrapper>
-)
+      <ContainerData>
+        <NameUser>
+          <a
+            href={`https://github.com/${username}`}
+          >
+            {name}
+          </a>
+        </NameUser>
+
+        <ReposInfo>
+          <span>{`- Repositórios: ${repo}`}</span>
+          <span>{`- Seguidores: ${followers}`}</span>
+          <span>{`- Seguindo: ${following}`}</span>
+        </ReposInfo>
+      </ContainerData>
+    </Wrapper>
+  )
+}
 
 UserInfo.propTypes = {
   userInfo: t.object
