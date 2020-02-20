@@ -18,14 +18,22 @@ function App () {
     const value = e.target.value
     const keyCode = e.which || e.keyCode
     const ENTER = 13
+    const target = e.target
 
     if (keyCode === ENTER) {
+      target.disabled = true
       axios.get(getGitHubApiUrl(value))
         .then((result) => {
           setUserInfo(result.data)
+          setRepos([])
+          setReposTitle('')
         })
-      setRepos([])
-      setReposTitle('')
+        .catch((error) => {
+          console.log('error-han: ', error)
+        })
+        .finally(() => {
+          target.disabled = false
+        })
     }
   }
 
@@ -34,6 +42,9 @@ function App () {
     axios.get(getGitHubApiUrl(userInfo.login, action))
       .then((result) => {
         setRepos(result.data)
+      })
+      .catch((error) => {
+        console.log('error-getRepos: ', error)
       })
   }
 
