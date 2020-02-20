@@ -37,9 +37,11 @@ function App () {
     }
   }
 
-  const getRepos = (action) => {
-    action === 'repos' ? setReposTitle('Repositórios') : setReposTitle('Favoritos')
-    axios.get(getGitHubApiUrl(userInfo.login, action))
+  const getRepos = (action, title) => {
+    const username = userInfo.login
+    setReposTitle(title)
+
+    axios.get(getGitHubApiUrl(username, action))
       .then((result) => {
         setRepos(result.data)
       })
@@ -57,8 +59,8 @@ function App () {
         repos={repos}
         reposTitle={reposTitle}
         handleSearch={(e) => handleSearch(e)}
-        getRepos={() => getRepos('repos')}
-        getStarred={() => getRepos('starred')}
+        getRepos={() => getRepos('repos', 'Repositórios')}
+        getStarred={() => getRepos('starred', 'Favoritos')}
       />
     </>
   )

@@ -4,16 +4,21 @@ import styled from 'styled-components'
 
 import { Button } from '@material-ui/core'
 
-const Actions = ({ getRepos, getStarred }) => (
-  <WrapperActions>
-    <Button variant='contained' onClick={getRepos}>
-      Ver Repositórios
-    </Button>
-    <Button variant='contained' onClick={getStarred}>
-      Ver Favoritos
-    </Button>
-  </WrapperActions>
-)
+function Actions ({ getRepos, getStarred }) {
+  const buttonLeft = 'Repositórios'
+  const buttonRigth = 'Favoritos'
+
+  return (
+    <WrapperActions>
+      <Button variant='contained' onClick={getRepos}>
+        Ver {buttonLeft}
+      </Button>
+      <Button variant='contained' onClick={getStarred}>
+        Ver {buttonRigth}
+      </Button>
+    </WrapperActions>
+  )
+}
 
 Actions.propTypes = {
   getRepos: t.func.isRequired,

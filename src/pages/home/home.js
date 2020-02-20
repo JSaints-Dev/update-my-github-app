@@ -19,8 +19,7 @@ const Home = ({
     <Container>
       <WrapperInfo>
         <SearchUserGit handleSearch={handleSearch} />
-        {!!userInfo &&
-          <UserInfo userInfo={userInfo} />}
+        {!!userInfo && <UserInfo userInfo={userInfo} />}
         {!!userInfo &&
           <Actions
             getRepos={getRepos}
