@@ -4,10 +4,7 @@ import styled from 'styled-components'
 
 import { Button } from '@material-ui/core'
 
-function Actions ({ getRepos, getStarred }) {
-  const buttonLeft = 'Repositórios'
-  const buttonRigth = 'Favoritos'
-
+function Actions ({ buttonLeft, buttonRigth, getRepos, getStarred }) {
   return (
     <WrapperActions>
       <Button variant='contained' onClick={getRepos}>
@@ -21,6 +18,8 @@ function Actions ({ getRepos, getStarred }) {
 }
 
 Actions.propTypes = {
+  buttonLeft: t.string,
+  buttonRigth: t.string,
   getRepos: t.func.isRequired,
   getStarred: t.func.isRequired
 }

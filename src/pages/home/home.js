@@ -8,6 +8,8 @@ import Actions from './components/actions'
 import Repos from './components/repos'
 
 const Home = ({
+  buttonLeft,
+  buttonRigth,
   getRepos,
   getStarred,
   handleSearch,
@@ -24,6 +26,8 @@ const Home = ({
           <Actions
             getRepos={getRepos}
             getStarred={getStarred}
+            buttonLeft={buttonLeft}
+            buttonRigth={buttonRigth}
           />}
 
         {!!repos &&
@@ -37,6 +41,8 @@ const Home = ({
 }
 
 Home.propTypes = {
+  buttonLeft: t.string,
+  buttonRigth: t.string,
   getRepos: t.func.isRequired,
   getStarred: t.func.isRequired,
   handleSearch: t.func.isRequired,

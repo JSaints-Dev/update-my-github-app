@@ -7,6 +7,8 @@ function App () {
   const [userInfo, setUserInfo] = useState(null)
   const [reposTitle, setReposTitle] = useState('')
   const [repos, setRepos] = useState([{}])
+  const buttonLeft = 'Repositórios'
+  const buttonRigth = 'Favoritos'
 
   const getGitHubApiUrl = (username, action) => {
     const inUserName = username ? `/${username}` : ''
@@ -59,8 +61,10 @@ function App () {
         repos={repos}
         reposTitle={reposTitle}
         handleSearch={(e) => handleSearch(e)}
-        getRepos={() => getRepos('repos', 'Repositórios')}
-        getStarred={() => getRepos('starred', 'Favoritos')}
+        getRepos={() => getRepos('repos', buttonLeft)}
+        getStarred={() => getRepos('starred', buttonRigth)}
+        buttonLeft={buttonLeft}
+        buttonRigth={buttonRigth}
       />
     </>
   )
