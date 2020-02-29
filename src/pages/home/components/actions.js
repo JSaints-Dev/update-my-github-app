@@ -4,22 +4,20 @@ import styled from 'styled-components'
 
 import { Button } from '@material-ui/core'
 
-function Actions ({ buttonLeft, buttonRigth, getRepos, getStarred }) {
+function Actions ({ getRepos, getStarred }) {
   return (
     <WrapperActions>
-      <Button variant='contained' onClick={getRepos}>
-        Ver {buttonLeft}
+      <Button variant='contained' onClick={() => getRepos('repos', 'Repositórios')}>
+        Ver Repositórios
       </Button>
-      <Button variant='contained' onClick={getStarred}>
-        Ver {buttonRigth}
+      <Button variant='contained' onClick={() => getStarred('starred', 'Favoritos')}>
+        Ver Favoritos
       </Button>
     </WrapperActions>
   )
 }
 
 Actions.propTypes = {
-  buttonLeft: t.string,
-  buttonRigth: t.string,
   getRepos: t.func.isRequired,
   getStarred: t.func.isRequired
 }

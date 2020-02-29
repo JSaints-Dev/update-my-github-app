@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import axios from 'axios'
 import { CssBaseline } from '@material-ui/core'
 import HomePage from './pages/home/'
@@ -7,16 +7,19 @@ function App () {
   const [userInfo, setUserInfo] = useState(null)
   const [reposTitle, setReposTitle] = useState('')
   const [repos, setRepos] = useState([{}])
-  const buttonLeft = 'Repositórios'
-  const buttonRigth = 'Favoritos'
 
-  const getGitHubApiUrl = (username, action) => {
+  const getGitHubApiUrl = useCallback((username, action) => {
     const inUserName = username ? `/${username}` : ''
     const inAction = action ? `/${action}` : ''
     return `https://api.github.com/users${inUserName}${inAction}`
-  }
+  }, [])
 
-  const handleSearch = (e) => {
+  const clearRepos = useCallback(() => {
+    setRepos([])
+    setReposTitle('')
+  }, [])
+
+  const handleSearch = useCallback((e) => {
     const value = e.target.value
     const keyCode = e.which || e.keyCode
     const ENTER = 13
@@ -27,8 +30,7 @@ function App () {
       axios.get(getGitHubApiUrl(value))
         .then((result) => {
           setUserInfo(result.data)
-          setRepos([])
-          setReposTitle('')
+          clearRepos()
         })
         .catch((error) => {
           console.log('error-han: ', error)
@@ -37,7 +39,7 @@ function App () {
           target.disabled = false
         })
     }
-  }
+  }, [clearRepos, getGitHubApiUrl])
 
   const getRepos = (action, title) => {
     const username = userInfo.login
@@ -61,10 +63,8 @@ function App () {
         repos={repos}
         reposTitle={reposTitle}
         handleSearch={(e) => handleSearch(e)}
-        getRepos={() => getRepos('repos', buttonLeft)}
-        getStarred={() => getRepos('starred', buttonRigth)}
-        buttonLeft={buttonLeft}
-        buttonRigth={buttonRigth}
+        getRepos={(action, title) => getRepos(action, title)}
+        getStarred={(action, title) => getRepos(action, title)}
       />
     </>
   )
